@@ -75,11 +75,11 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerEntity entity =reposCustomer.findById(id).get();
 		entity.setAddress(customer.getAddress());
 		entity.setEmail(customer.getEmail());
-		entity.setFirstName(customer.getFirstName());
-		entity.setLastName(customer.getLastName());
-		entity.setPhoneNumber(customer.getPhoneNumber());
-		entity.setType(customer.getType());
+		entity.setFirstname(customer.getEmail());
+		entity.setLastname(customer.getLastname());
 		entity.setUsername(customer.getUsername());
+		entity.setPhonenumber(customer.getPhonenumber());
+		entity.setType(customer.getType());
 		CustomerEntity newEntity =reposCustomer.save(entity);
 		return mapper.map(newEntity, CustomerDto.class);
 		
