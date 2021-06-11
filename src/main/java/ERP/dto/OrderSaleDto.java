@@ -15,6 +15,9 @@ public class OrderSaleDto {
 	private int number;
     private Date date = new Date();
     private float totalPrice;
+    
+    //
+    private boolean valid=false;
  
     private CustomerDto customer;
     

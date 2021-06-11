@@ -93,7 +93,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	// le produit le plus achete
 	@Override
-	public String getProductlePlusAchete() {
+	public ProductDto getProductlePlusAchete() {
 		int max =0;
 		//LineSaleEntity lineSaleMaxQt =null;
 		ProductEntity productPlusAchete =null;
@@ -109,7 +109,7 @@ public class ProductServiceImpl implements ProductService {
           }
           
 	}
-		return productPlusAchete.getName();
+		return mapper.map(productPlusAchete, ProductDto.class);
 	}
 
 	@Override

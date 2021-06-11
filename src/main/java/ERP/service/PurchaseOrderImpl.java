@@ -47,6 +47,8 @@ public class PurchaseOrderImpl implements PurchaseOrderService {
 		ProviderEntity providerEntityinBd = repoProvider.save(provider);
 		entity.setProvider(providerEntityinBd);
 		InvoiceEntiy invoice=entity.getInvoice();
+		
+        InvoiceEntiy invoiceEntityinBd = repoInvoice.save(invoice);
 		entity.setInvoice(invoice);
 		PurchaseOrderEntity  newEntity = repoPurchaseOrder.save(entity);
 

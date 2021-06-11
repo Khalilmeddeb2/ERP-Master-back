@@ -1,8 +1,9 @@
 package ERP.service;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
+import ERP.dto.LineSaleDto;
 import ERP.dto.OrderSaleDto;
 
 public interface OrderSaleService {
@@ -21,6 +22,13 @@ public interface OrderSaleService {
     
     // le revenue des ventes des produits dans le stock par periode
    // float getRevenuParPeriode(LocalDate dateBegin, LocalDate dateEnd);
+    
+    List<LineSaleDto> getLinesSalesForOrderSale(int numero);
+    
+    // 
+    
+    void getValidOrderSale(int id);
+    
     
 
 }

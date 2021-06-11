@@ -25,6 +25,7 @@ public class ProviderEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private int id;
+	private String username;
 	private String FirstName;
 	private String LastName;
 	private String Email;

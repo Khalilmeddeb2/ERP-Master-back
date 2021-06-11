@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ERP.dto.CustomerDto;
 import ERP.dto.ProviderDto;
 import ERP.service.ProviderService;
 
@@ -50,6 +51,23 @@ public class ProviderRest {
 	@DeleteMapping("/{id}")
 	public ProviderDto deleteProviderById(@PathVariable("id") int id) {
 		return service.deleteProviderById(id);
+	}
+	
+	@GetMapping("/TotalProvider")
+	public int getNumberProviders() {
+		return service.getTotalNumberProviders();
+	}
+	
+	@GetMapping("/plusFidele")
+	public ProviderDto getProviderFidele() {
+		return service.getProviderFidele();
+	}
+	
+	@GetMapping("/userName/{Username}")
+	public ProviderDto getProviderByUserName(@PathVariable("Username") String Username)
+	{
+		
+		return service.getProviderByUserName(Username);
 	}
 
 }

@@ -1,11 +1,13 @@
 package ERP.service;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ERP.dto.LineSaleDto;
 import ERP.dto.OrderSaleDto;
 import ERP.model.CustomerEntity;
 import ERP.model.InvoiceEntiy;
@@ -167,6 +169,28 @@ public class OrderSaleServiceImpl implements OrderSaleService{
 		return revenu;
 		
 	}
+
+	@Override
+	public List<LineSaleDto> getLinesSalesForOrderSale(int numero) {
+		OrderSaleEntity entity=reposOrderSale.findById(numero).get();
+		List<LineSaleDto>ListLineSaleDto =new ArrayList<>();
+		for (LineSaleEntity e : entity.getLineSales()) {
+			ListLineSaleDto.add(mapper.map(e, LineSaleDto.class));
+			
+		}
+		
+		return ListLineSaleDto;
+	}
+
+	@Override
+	public void getValidOrderSale(int id) {
+		OrderSaleEntity entity=reposOrderSale.findById(id).get();
+		entity.setValid(true);
+		reposOrderSale.save(entity);
+		
+		
+		
+	}
 	
 	/*
 	  // le revenue des ventes des produits dans le stock par periode
@@ -190,4 +214,7 @@ public class OrderSaleServiceImpl implements OrderSaleService{
 	 		return revenu;
 	 	}
 */
+	
+	
+	
 }

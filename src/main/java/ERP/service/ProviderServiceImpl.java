@@ -9,7 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ERP.dto.CustomerDto;
 import ERP.dto.ProviderDto;
+import ERP.model.CustomerEntity;
 import ERP.model.ProviderEntity;
 import ERP.repository.ProviderRepository;
 
@@ -61,7 +63,7 @@ public class ProviderServiceImpl implements ProviderService {
 		{
 			throw new NoSuchElementException("Provider with this id is not found");
 		}
-		ProviderDto provider = new ProviderDto(entity.getId(), entity.getFirstName(),
+		ProviderDto provider = new ProviderDto(entity.getId(), entity.getUsername(),entity.getFirstName(),
 				entity.getLastName(),entity.getEmail(),entity.getAdresse(), entity.getVille(),
 				entity.getPhoneNumber(),entity.getImage());
 		
@@ -97,6 +99,48 @@ public class ProviderServiceImpl implements ProviderService {
 		repoProvider.deleteById(id);
 		return entity;
 
+	}
+
+	@Override
+	public int getTotalNumberProviders() {
+		List<ProviderEntity> providers=repoProvider.findAll();
+		return providers.size();
+	}
+
+	@Override
+	public ProviderDto getProviderFidele() {
+		int max=0;
+		ProviderEntity providerPF = null;
+		ProviderDto providerPFDto = null;
+		List<ProviderEntity> providers =repoProvider.findAll();
+		for (ProviderEntity provider : providers) {
+			if(provider.getPurchaseOrders().size()>max) {
+				max = provider.getPurchaseOrders().size();
+				providerPF = provider;	
+			}
+			
+		}
+		
+		providerPFDto = mapper.map(providerPF, ProviderDto.class);
+		
+		return providerPFDto;
+	}
+
+	@Override
+	public ProviderDto getProviderByUserName(String Username) {
+		ProviderEntity providerEntitytrouvable=null;
+		List<ProviderEntity>listproviderEntity=repoProvider.findAll();
+		
+		for (ProviderEntity providerEntity : listproviderEntity) {
+			if(providerEntity.getUsername().equalsIgnoreCase(Username))
+			{
+				providerEntitytrouvable=providerEntity;
+				break;
+			}
+		}
+		
+		return mapper.map(providerEntitytrouvable, ProviderDto.class);
+		
 	}
 
 }

@@ -42,8 +42,8 @@ public class PaymentRest {
 		return service.getPaymentById(id);
 	}
 	
-	@DeleteMapping
-	public void deletePaymentyById(int id) {
+	@DeleteMapping("/{id}")
+	public void deletePaymentyById(@PathVariable("id") int id) {
 		service.deletePaymentyById(id);
 	}
 	

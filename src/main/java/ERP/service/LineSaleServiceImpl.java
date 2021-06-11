@@ -92,4 +92,10 @@ public class LineSaleServiceImpl implements LineSaleService {
 			reposLineSale.deleteById(id);
 		}
 
+		@Override
+		public void deleteAllLinesSales() {
+			reposLineSale.deleteAll();
+			
+		}
+
 }

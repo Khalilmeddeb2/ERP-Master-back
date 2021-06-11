@@ -38,7 +38,7 @@ public class InvoiceEntiy {
 	@OneToMany(mappedBy = "invoice",cascade = CascadeType.REMOVE)
 	private List<PaymentEntity> payements= new ArrayList<>();
 	
-	@OneToOne(mappedBy = "invoice",cascade = CascadeType.REMOVE)
+	@OneToOne(mappedBy = "invoice")
 	private PurchaseOrderEntity purchaseOrder;
 
 	

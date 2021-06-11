@@ -12,7 +12,7 @@ public interface CustomerService {
 	void deleteCustomerById(int id);
 	
 	// le client le plus fidele
-	String getClientFidele();
+	CustomerDto getClientFidele();
 	
 	
 	// le nombre des client dans le stock 

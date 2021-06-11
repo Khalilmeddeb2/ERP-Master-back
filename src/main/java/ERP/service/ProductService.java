@@ -13,7 +13,7 @@ public interface ProductService {
 	void deleteProductyById(int id);
 	
 	// le produit le plus achete
-	String getProductlePlusAchete();
+	ProductDto getProductlePlusAchete();
 	
 	// le nombre des produits dans le stock
 	int getTotalNumberProducts();

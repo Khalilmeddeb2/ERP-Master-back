@@ -62,7 +62,7 @@ public class CustomerRest {
 	
 	// le client le plus fidele
 	@GetMapping("/plusFidele")
-	public String getClientFidele() {
+	public CustomerDto getClientFidele() {
 		return service.getClientFidele();
 	}
 	

@@ -67,12 +67,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public PaymentDto getPaymentById(int id) {
 
-		PaymentEntity entity;
-		Optional<PaymentEntity> opt = reposPayement.findById(id);
-		if(opt.isPresent())
-			entity = opt.get();
-		else
-			throw new NoSuchElementException("payment with this id is not found");
+		PaymentEntity entity=reposPayement.findById(id).get();
 		
 		return mapper.map(entity, PaymentDto.class);
 	}

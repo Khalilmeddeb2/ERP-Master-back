@@ -44,7 +44,7 @@ public class PurchaseOrderEntity {
 	@OneToMany(mappedBy = "purchaseOrder",cascade = CascadeType.REMOVE)
 	private List<BuyLineEntity> lineBuys= new ArrayList<>();
    
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private InvoiceEntiy invoice;
 
 	

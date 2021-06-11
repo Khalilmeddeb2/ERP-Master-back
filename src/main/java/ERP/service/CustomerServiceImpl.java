@@ -94,7 +94,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	// le client le plus fidele
 	@Override
-	public String getClientFidele() {
+	public CustomerDto getClientFidele() {
 		int max=0;
 		CustomerEntity cutomerPF = null;
 		CustomerDto customerPFDto = null;
@@ -109,7 +109,7 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		customerPFDto = mapper.map(cutomerPF, CustomerDto.class);
 		
-		return "le client le plus fidele est "+customerPFDto.getAddress();
+		return customerPFDto;
 	}
 	
 	// le nombre des client dans le stock 

@@ -58,7 +58,12 @@ public class ProductRest {
     
 	// le produit le plus achete
     @GetMapping("/LeplusAchete")
-    public String getProductlePlusAchete() {
+    public ProductDto getProductlePlusAchete() {
     	return service.getProductlePlusAchete();
+    }
+    
+    @GetMapping("/TotalProducts")
+    public int getNumberProducts() {
+    	return service.getTotalNumberProducts();
     }
 }

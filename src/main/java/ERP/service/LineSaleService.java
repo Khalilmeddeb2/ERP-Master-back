@@ -11,4 +11,5 @@ public interface LineSaleService {
 	LineSaleDto getLinesaleById(int id);
 	LineSaleDto modifyLinesale(int id, LineSaleDto category);
 	void deleteLinesaleById(int id);
+	void deleteAllLinesSales();
 }

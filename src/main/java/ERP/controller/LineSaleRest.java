@@ -43,9 +43,15 @@ public class LineSaleRest {
 	    {
 	    	service.deleteLinesaleById(id);
 	    }
-	 @PutMapping("/{id}")
+	  @PutMapping("/{id}")
 		public LineSaleDto modifyLine(@PathVariable("id") int id,@RequestBody LineSaleDto LineSale) {
 		    return	service.modifyLinesale(id, LineSale);}
+	 
+	   @DeleteMapping
+	    public void deleteAllLineSales()
+	    {
+	    	service.deleteAllLinesSales();
+	    }
 
 	 
 

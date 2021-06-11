@@ -1,6 +1,6 @@
 package ERP.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class PaymentEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id ;
 	private String mode ;
-	private LocalDate datePayment ;
+	private Date datePayment =new Date() ;
 	private double montant ;
 	
 	
@@ -30,33 +30,6 @@ public class PaymentEntity {
 	private InvoiceEntiy invoice ;
 
 
-	public String getMode() {
-		return mode;
-	}
-
-
-	public double getMontant() {
-		return montant;
-	}
-
-
-	public void setMontant(double montant) {
-		this.montant = montant;
-	}
-
-
-	public LocalDate getDatePayment() {
-		return datePayment;
-	}
-
-
-	public void setDatePayment(LocalDate datePayment) {
-		this.datePayment = datePayment;
-	}
-
-
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
+	
 
 }

@@ -32,6 +32,8 @@ public class OrderSaleEntity {
 	//private int total;
 	private Date date = new Date();
 	private float totalPrice;
+	//
+	private boolean valid=false;
 	
 	@ManyToOne
 	private CustomerEntity customer;
@@ -47,13 +49,7 @@ public class OrderSaleEntity {
 
 	
 
-	public float getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(float totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+	
 
 	
 

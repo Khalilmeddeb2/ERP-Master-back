@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProviderDto {
 	private int id;
+	private String username;
 	private String FirstName;
 	private String LastName;
 	private String Email;

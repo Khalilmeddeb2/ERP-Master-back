@@ -1,6 +1,7 @@
 package ERP.dto;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,8 @@ public class PaymentDto {
 	
 	private int id ;
 	private String mode ;
-	private LocalDate datePayment ;
+	private Date datePayment=new Date(); ;
 	private double montant ;
+	private InvoiceDto invoice;
 	
 }

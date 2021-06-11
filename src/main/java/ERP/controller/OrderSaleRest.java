@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ERP.dto.LineSaleDto;
 import ERP.dto.OrderSaleDto;
 import ERP.service.OrderSaleService;
 
@@ -73,4 +74,16 @@ public class OrderSaleRest {
  		return service.getRevenuParPeriode(dateBegin, dateEnd);
      	
      }*/
+     
+     @GetMapping("/linesSales/{id}")
+     public List<LineSaleDto> getLinesSalesForOrderSale(@PathVariable("id") int id) {
+    	 return service.getLinesSalesForOrderSale(id);
+    	 
+     }
+     
+     @GetMapping("/validOrderSale/{id}")
+     public void getValidOrderSale(@PathVariable("id") int id) {
+    	  service.getValidOrderSale(id);
+    	 
+     }
 }
