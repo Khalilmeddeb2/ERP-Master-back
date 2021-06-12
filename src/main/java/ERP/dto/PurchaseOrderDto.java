@@ -15,6 +15,7 @@ public class PurchaseOrderDto {
 	//private int total;
 	private Date date = new Date();
 	private float totalPrice;
+	 private boolean valid=false;
 	private ProviderDto provider ;   
 	private InvoiceDto invoice;
 	

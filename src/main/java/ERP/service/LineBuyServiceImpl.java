@@ -12,6 +12,7 @@ import ERP.dto.PurchaseOrderDto;
 import ERP.model.BuyLineEntity;
 import ERP.model.ProductEntity;
 import ERP.model.PurchaseOrderEntity;
+import ERP.repository.InvoiceRepository;
 import ERP.repository.LineBuyRepository;
 import ERP.repository.ProductRepository;
 import ERP.repository.PurchaseOrderRepository;
@@ -20,15 +21,19 @@ public class LineBuyServiceImpl implements LineBuyService {
 	private LineBuyRepository repoLineBuy;
 	private ProductRepository repoProduct;
 	private PurchaseOrderRepository repoPurchaseOrder;
+	private PurchaseOrderService service;
+	private InvoiceRepository repoInvoice;
 	private ModelMapper mapper;
 	
 	@Autowired
 	public LineBuyServiceImpl(LineBuyRepository repoLineBuy,ProductRepository repoProduct,
-			PurchaseOrderRepository repoPurchaseOrder,ModelMapper mapper)
+			PurchaseOrderRepository repoPurchaseOrder,PurchaseOrderService service ,InvoiceRepository repoInvoice,ModelMapper mapper)
 	{
 		this.repoLineBuy=repoLineBuy;
 		this.repoProduct=repoProduct;
 		this.repoPurchaseOrder=repoPurchaseOrder;
+		this.service=service;
+		this.repoInvoice=repoInvoice;
 		this.mapper=mapper;
 		
 	}
@@ -41,7 +46,12 @@ public class LineBuyServiceImpl implements LineBuyService {
 		PurchaseOrderEntity purchaseOrder = repoPurchaseOrder.findById(purchaseNumber).get();
 		entity.setPurchaseOrder(purchaseOrder);
 		entity.setProduct(product);
+		purchaseOrder.getLineBuys().add(entity);
 		BuyLineEntity newBuyLine = repoLineBuy.save(entity);
+		entity.getPurchaseOrder().setTotalPrice(service.calculOrder(purchaseNumber));
+		entity.getPurchaseOrder().getInvoice().setTotPayments(entity.getPurchaseOrder().getTotalPrice());
+		repoInvoice.save(entity.getPurchaseOrder().getInvoice());
+		repoPurchaseOrder.save(purchaseOrder);
 		return mapper.map(newBuyLine, LineBuyDto.class);
 	}
 

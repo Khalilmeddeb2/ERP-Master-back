@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ERP.dto.LineBuyDto;
+import ERP.dto.LineSaleDto;
 import ERP.dto.PurchaseOrderDto;
 import ERP.service.PurchaseOrderService;
 
@@ -56,6 +58,18 @@ public class PurchaseOrderRest {
 	{
 		return service.calculOrder(num);
 	}
+	
+	@GetMapping("/linesByus/{id}")
+    public List<LineBuyDto> getLinesSalesForPurchaseOrder(@PathVariable("id") int id) {
+   	 return service.getLinesSalesForPurchaseOrder(id);
+   	 
+    }
+    
+    @GetMapping("/validPurchaseOrder/{id}")
+    public void getValidPurchaseSale(@PathVariable("id") int id) {
+   	  service.getValidPurchaseSale(id);;
+   	 
+    }
 	
 
 }

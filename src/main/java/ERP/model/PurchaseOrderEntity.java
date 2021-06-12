@@ -35,6 +35,8 @@ public class PurchaseOrderEntity {
 	private Date date = new Date();
 	private float totalPrice;
 	
+	private boolean valid=false;
+	
 	/*@ManyToOne
 	private UserEntity user ;*/
 	

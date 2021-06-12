@@ -9,10 +9,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ERP.dto.LineBuyDto;
+import ERP.dto.LineSaleDto;
 import ERP.dto.ProviderDto;
 import ERP.dto.PurchaseOrderDto;
 import ERP.model.BuyLineEntity;
 import ERP.model.InvoiceEntiy;
+import ERP.model.LineSaleEntity;
+import ERP.model.OrderSaleEntity;
 import ERP.model.ProviderEntity;
 import ERP.model.PurchaseOrderEntity;
 import ERP.repository.InvoiceRepository;
@@ -49,7 +53,7 @@ public class PurchaseOrderImpl implements PurchaseOrderService {
 		InvoiceEntiy invoice=entity.getInvoice();
 		
         InvoiceEntiy invoiceEntityinBd = repoInvoice.save(invoice);
-		entity.setInvoice(invoice);
+		entity.setInvoice(invoiceEntityinBd);
 		PurchaseOrderEntity  newEntity = repoPurchaseOrder.save(entity);
 
 		
@@ -137,6 +141,25 @@ public class PurchaseOrderImpl implements PurchaseOrderService {
 		
 		orderEntity.setTotalPrice(sumOrder);
 		return sumOrder;
+	}
+	@Override
+	public List<LineBuyDto> getLinesSalesForPurchaseOrder(int numero) {
+		PurchaseOrderEntity entity=repoPurchaseOrder.findById(numero).get();
+		List<LineBuyDto>ListLineBuyDto =new ArrayList<>();
+		for (BuyLineEntity e : entity.getLineBuys()) {
+			ListLineBuyDto.add(mapper.map(e, LineBuyDto.class));
+			
+		}
+		
+		return ListLineBuyDto;
+	}
+
+	@Override
+	public void getValidPurchaseSale(int id) {
+		PurchaseOrderEntity entity=repoPurchaseOrder.findById(id).get();
+		entity.setValid(true);
+		repoPurchaseOrder.save(entity);
+		
 	}
 
 }
